@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &797383822114033419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7704833104838434369}
+  m_Layer: 0
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7704833104838434369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797383822114033419}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6521776674759302511}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5519548175331555750
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,6 +45,7 @@ GameObject:
   - component: {fileID: 4283419884394564285}
   - component: {fileID: 4302365847829549447}
   - component: {fileID: 5346531551955650269}
+  - component: {fileID: 781653759880394623}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -147,6 +179,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: 58a10607b4e01424b9a6213f1b25a3cc, type: 2}
   towerTransform: {fileID: 6521776674759302511}
+--- !u!114 &781653759880394623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519548175331555750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dbd517561f1e8546aade1e4bb96b4d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: 58a10607b4e01424b9a6213f1b25a3cc, type: 2}
+  projectileSpawnPoint: {fileID: 7704833104838434369}
+  serverProjectilePrefab: {fileID: 7530776390995092229, guid: 0a901f6ff2a71494ab63f63e37849d91, type: 3}
+  clientProjectilePrefab: {fileID: 781907232768290889, guid: 24a924d142351444ba325fcc80ba680f, type: 3}
+  projectileSpeed: 30
 --- !u!1001 &1487375563103624008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -253,7 +302,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5631251491187033639, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7704833104838434369}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4760328556444178097, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       insertIndex: -1

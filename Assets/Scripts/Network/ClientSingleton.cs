@@ -7,7 +7,7 @@ public class ClientSingleton : MonoBehaviour
 {
     static ClientSingleton instance;
 
-    ClientGameManager gameManager;
+    public ClientGameManager GameManager { get; private set; }
 
     public static ClientSingleton Instance
     {
@@ -27,16 +27,41 @@ public class ClientSingleton : MonoBehaviour
         }
     }
 
+    bool isClientCreated = false;
+
     // Start is called before the first frame update
-    void Start()
+    async void Start()
     {
         DontDestroyOnLoad(gameObject);
+
+        Debug.Log("ClientSingleton Start method called");
+
+        if (!isClientCreated)
+        {
+            isClientCreated = true;
+            bool clientCreated = await CreateClient();
+
+            Debug.Log($"Client creation result: {clientCreated}");
+
+            if (clientCreated)
+            {
+                GameManager.GoToMenu();
+            }
+        }
     }
     
-    public async Task CreateClient()
+    public async Task<bool> CreateClient()
     {
-        gameManager = new ClientGameManager();
+        if(GameManager == null)
+        {
+            GameManager = new ClientGameManager();
+            Debug.Log("ClientGameManager instance created");
+        }
 
-        await gameManager.InitAsync();
+        bool initResult = await GameManager.InitAsync();
+
+        Debug.Log($"ClientGameManager init result: {initResult}");
+
+        return initResult;
     }
 }

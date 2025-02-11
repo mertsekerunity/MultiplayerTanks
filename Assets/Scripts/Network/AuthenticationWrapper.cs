@@ -6,15 +6,6 @@ using UnityEngine;
 
 public static class AuthenticationWrapper
 {
-    public enum AuthState
-    {
-        NotAuthenticated,
-        Authenticating,
-        Authenticated,
-        Error,
-        Timeout
-    }
-
     public static AuthState CurrentAuthState { get; private set; } = AuthState.NotAuthenticated;
 
     static TaskCompletionSource<AuthState> authTaskCompletionSource;
@@ -82,4 +73,13 @@ public static class AuthenticationWrapper
 
         return CurrentAuthState;
     }
+}
+
+public enum AuthState
+{
+    NotAuthenticated,
+    Authenticating,
+    Authenticated,
+    Error,
+    Timeout
 }

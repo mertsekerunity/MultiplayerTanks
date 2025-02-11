@@ -27,6 +27,6 @@ public class HealthDisplay : NetworkBehaviour
 
     void HandleHealthChanged(int oldHealth, int newHealth)
     {
-        healthbarImage.fillAmount = newHealth / health.MaxHealth;
+        healthbarImage.fillAmount = (float)newHealth / health.MaxHealth;
     }
 }

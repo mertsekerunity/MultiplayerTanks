@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 5458769665412685919}
   - component: {fileID: 5488112121606285599}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 5346531551955650269}
   - component: {fileID: 781653759880394623}
   - component: {fileID: 8916238522741177181}
+  - component: {fileID: 8938790331884424521}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -391,9 +392,11 @@ MonoBehaviour:
   clientProjectilePrefab: {fileID: 781907232768290889, guid: 24a924d142351444ba325fcc80ba680f, type: 3}
   muzzleFlash: {fileID: 7319436472599462973}
   playerCollider: {fileID: 5820756613831350174}
+  coinWallet: {fileID: 8938790331884424521}
   projectileSpeed: 30
   fireRate: 1
   muzzleFlashDuration: 0.01
+  costToFire: 10
 --- !u!114 &8916238522741177181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,6 +411,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
   CurrentHealth:
+    m_InternalValue: 0
+--- !u!114 &8938790331884424521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519548175331555750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287defbf566137244b684f7c333c6ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalCoins:
     m_InternalValue: 0
 --- !u!1 &7319436472599462973
 GameObject:
@@ -480,7 +497,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -188068879
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 9d8bd4f8481a773488649b18bd02cbc1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -503,7 +520,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 79491586382290728, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 79491586382290728, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingLayerID
@@ -511,7 +528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1782756064032906250, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1782756064032906250, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingLayerID
@@ -559,7 +576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2468121812286277786, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2468121812286277786, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingLayerID
@@ -571,7 +588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4883876684798827331, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4883876684798827331, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingOrder
@@ -583,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7175111327190297728, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7175111327190297728, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingLayerID
@@ -591,7 +608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8019436440842038424, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8019436440842038424, guid: 8aa4fa26cf1cb3742896cb153e1ec8c5, type: 3}
       propertyPath: m_SortingLayerID

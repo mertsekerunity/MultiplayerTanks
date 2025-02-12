@@ -702,7 +702,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &506294147
 MonoBehaviour:
@@ -1169,13 +1169,14 @@ GameObject:
   - component: {fileID: 761512309}
   - component: {fileID: 761512311}
   - component: {fileID: 761512310}
+  - component: {fileID: 761512312}
   m_Layer: 5
   m_Name: LobbiesBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &761512309
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1236,6 +1237,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761512308}
   m_CullTransparentMesh: 1
+--- !u!114 &761512312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761512308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161dd7af7f2de8845874f094f869a4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lobbyContainerParent: {fileID: 506294146}
+  lobbyContainerPrefab: {fileID: 1221705581518909011, guid: cf89c34b5758eb6459a98d8a013eaec4, type: 3}
 --- !u!1 &762693842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,7 +1778,7 @@ RectTransform:
   m_Father: {fileID: 681543485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

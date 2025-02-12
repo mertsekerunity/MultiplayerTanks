@@ -12,7 +12,7 @@ public class NameSelector : MonoBehaviour
     [SerializeField] int minNameLength = 4;
     [SerializeField] int maxNameLength = 20;
 
-    const string PlayerNameKey = "PlayerName";
+    public const string PlayerNameKey = "PlayerName";
 
     // Start is called before the first frame update
     void Start()

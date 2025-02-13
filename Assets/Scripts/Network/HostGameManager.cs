@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using System.Text;
+using Unity.Services.Authentication;
 
 public class HostGameManager
 {
@@ -82,7 +83,8 @@ public class HostGameManager
 
         networkServer = new NetworkServer(NetworkManager.Singleton);
 
-        UserData userData = new UserData { userName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Missing name") };
+        UserData userData = new UserData { userName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Missing name"),
+                                           userAuthId = AuthenticationService.Instance.PlayerId };
 
         string payload = JsonUtility.ToJson(userData);
 

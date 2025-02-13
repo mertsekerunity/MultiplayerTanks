@@ -8,11 +8,16 @@ public class NetworkServer
 {
     NetworkManager networkManager;
 
+    Dictionary<ulong, string> clientIdToAuth = new Dictionary<ulong, string>();
+    Dictionary<string, UserData> authIdToUserData = new Dictionary<string, UserData>();
+
     public NetworkServer(NetworkManager networkManager)
     {
         this.networkManager = networkManager;
 
         networkManager.ConnectionApprovalCallback += ApprovalCheck;
+
+        networkManager.OnServerStarted += OnNetworkReady;
     }
 
     void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
@@ -23,8 +28,27 @@ public class NetworkServer
 
         Debug.Log(userData.userName);
 
+        clientIdToAuth[request.ClientNetworkId] = userData.userAuthId;
+
+        authIdToUserData[userData.userAuthId] = userData;
+
         response.Approved = true;
 
         response.CreatePlayerObject = true;
+    }
+
+    void OnNetworkReady()
+    {
+        networkManager.OnClientDisconnectCallback += OnClientDisconnect;
+    }
+
+    void OnClientDisconnect(ulong clientId)
+    {
+        if(clientIdToAuth.TryGetValue(clientId, out string authId))
+        {
+            clientIdToAuth.Remove(clientId);
+
+            authIdToUserData.Remove(authId);
+        }
     }
 }

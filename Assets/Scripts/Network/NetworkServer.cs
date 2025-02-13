@@ -58,7 +58,7 @@ public class NetworkServer : IDisposable
 
         networkManager.ConnectionApprovalCallback -= ApprovalCheck;
         networkManager.OnClientDisconnectCallback -= OnClientDisconnect;
-        networkManager.OnServerStarted = OnNetworkReady;
+        networkManager.OnServerStarted -= OnNetworkReady;
 
         if (networkManager.IsListening)
         {

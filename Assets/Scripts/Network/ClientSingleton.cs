@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.Netcode;
 using UnityEngine;
 
 public class ClientSingleton : MonoBehaviour
@@ -63,5 +64,10 @@ public class ClientSingleton : MonoBehaviour
         Debug.Log($"ClientGameManager init result: {initResult}");
 
         return initResult;
+    }
+
+    public void Dispose()
+    {
+        GameManager?.Dispose();
     }
 }

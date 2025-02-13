@@ -13,8 +13,9 @@ using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using System.Text;
 using Unity.Services.Authentication;
+using Unity.Collections.LowLevel.Unsafe;
 
-public class HostGameManager
+public class HostGameManager: IDisposable
 {
     Allocation allocation;
     string joinCode;
@@ -108,5 +109,25 @@ public class HostGameManager
             Lobbies.Instance.SendHeartbeatPingAsync(lobbyId);
             yield return delay;
         }
+    }
+
+    public async void Dispose()
+    {
+        HostSingleton.Instance.StopCoroutine(nameof(HeartbeatLobby));
+
+        if (!string.IsNullOrEmpty(lobbyId))
+        {
+            try
+            {
+                await Lobbies.Instance.DeleteLobbyAsync(lobbyId);
+            }
+            catch (LobbyServiceException ex)
+            {
+                Debug.Log(ex);
+            }
+            lobbyId = string.Empty;
+        }
+
+        networkServer?.Dispose();
     }
 }

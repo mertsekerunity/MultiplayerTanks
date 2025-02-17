@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -12,6 +13,11 @@ public class Player : NetworkBehaviour
     [SerializeField] CinemachineVirtualCamera virtualCamera;
     [SerializeField] int ownerPriority = 15;
 
+    [field: SerializeField] public Health Health { get; private set; }
+
+    public static event Action<Player> OnPlayerSpawned;
+    public static event Action<Player> OnPlayerDespawned;
+
     public override void OnNetworkSpawn()
     {
         if (IsServer)
@@ -19,11 +25,21 @@ public class Player : NetworkBehaviour
             UserData userData = HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(OwnerClientId);
 
             PlayerName.Value = userData.userName;
+
+            OnPlayerSpawned?.Invoke(this);
         }
 
         if (IsOwner)
         {
             virtualCamera.Priority = ownerPriority;
+        }
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if (IsServer)
+        {
+            OnPlayerDespawned?.Invoke(this);
         }
     }
 }

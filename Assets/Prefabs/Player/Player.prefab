@@ -596,6 +596,7 @@ MonoBehaviour:
         byte0029: 0
   virtualCamera: {fileID: 3821376543069726272}
   ownerPriority: 15
+  <Health>k__BackingField: {fileID: 8916238522741177181}
 --- !u!1 &6254127103013261505
 GameObject:
   m_ObjectHideFlags: 0

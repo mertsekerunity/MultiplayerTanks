@@ -21,7 +21,7 @@ public class HostGameManager: IDisposable
     string joinCode;
     string lobbyId;
 
-    NetworkServer networkServer;
+    public NetworkServer NetworkServer { get; private set; }
 
     const int MaxConnections = 20;
     const string GameSceneName = "Game";
@@ -82,7 +82,7 @@ public class HostGameManager: IDisposable
             return;
         }
 
-        networkServer = new NetworkServer(NetworkManager.Singleton);
+        NetworkServer = new NetworkServer(NetworkManager.Singleton);
 
         UserData userData = new UserData { userName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Missing name"),
                                            userAuthId = AuthenticationService.Instance.PlayerId };
@@ -128,6 +128,6 @@ public class HostGameManager: IDisposable
             lobbyId = string.Empty;
         }
 
-        networkServer?.Dispose();
+        NetworkServer?.Dispose();
     }
 }

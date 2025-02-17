@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 1
+  m_BindingMode: 4
   m_FollowOffset: {x: 0, y: 0, z: -10}
   m_XDamping: 1
   m_YDamping: 1
@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 781653759880394623}
   - component: {fileID: 8916238522741177181}
   - component: {fileID: 8938790331884424521}
+  - component: {fileID: 8110152873518900450}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -594,6 +595,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TotalCoins:
     m_InternalValue: 0
+--- !u!114 &8110152873518900450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519548175331555750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96427cc77ea163646824726dbb38e3d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  virtualCamera: {fileID: 5446862426534515046}
+  ownerPriority: 15
 --- !u!1 &7319436472599462973
 GameObject:
   m_ObjectHideFlags: 0

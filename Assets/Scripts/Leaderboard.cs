@@ -142,7 +142,7 @@ public class Leaderboard : NetworkBehaviour
             {
                 ClientId = leaderboardEntities[i].ClientId,
                 PlayerName = leaderboardEntities[i].PlayerName,
-                Coins = leaderboardEntities[i].Coins
+                Coins = newCoins
             };
 
             return;

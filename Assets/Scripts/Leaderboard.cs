@@ -8,6 +8,7 @@ public class Leaderboard : NetworkBehaviour
 {
     [SerializeField] Transform leaderboardEntityHolder;
     [SerializeField] LeaderboardEntityDisplay leaderboardEntityPrefab;
+    [SerializeField] int entitiesToDisplay = 8;
 
     NetworkList<LeaderboardEntityState> leaderboardEntities;
     List<LeaderboardEntityDisplay> entityDisplays = new List<LeaderboardEntityDisplay>();
@@ -66,7 +67,7 @@ public class Leaderboard : NetworkBehaviour
         switch (changeEvent.Type)
         {
             case NetworkListEvent<LeaderboardEntityState>.EventType.Add:
-                if(!entityDisplays.Any(x => x.ClientId == changeEvent.Value.ClientId))
+                if (!entityDisplays.Any(x => x.ClientId == changeEvent.Value.ClientId))
                 {
                     LeaderboardEntityDisplay leaderboardEntity = Instantiate(leaderboardEntityPrefab, leaderboardEntityHolder);
 
@@ -83,7 +84,7 @@ public class Leaderboard : NetworkBehaviour
             case NetworkListEvent<LeaderboardEntityState>.EventType.Remove:
                 LeaderboardEntityDisplay displayToRemove = entityDisplays.FirstOrDefault(x => x.ClientId == changeEvent.Value.ClientId);
 
-                if(displayToRemove != null)
+                if (displayToRemove != null)
                 {
                     displayToRemove.transform.SetParent(null);
 
@@ -97,12 +98,32 @@ public class Leaderboard : NetworkBehaviour
             case NetworkListEvent<LeaderboardEntityState>.EventType.Value:
                 LeaderboardEntityDisplay displayToUpdate = entityDisplays.FirstOrDefault(x => x.ClientId == changeEvent.Value.ClientId);
 
-                if(displayToUpdate != null)
+                if (displayToUpdate != null)
                 {
                     displayToUpdate.UpdateCoins(changeEvent.Value.Coins);
                 }
 
                 break;
+        }
+
+        entityDisplays.Sort((x, y) => y.Coins.CompareTo(x.Coins));
+
+        for (int i = 0; i < entityDisplays.Count; i++)
+        {
+            entityDisplays[i].transform.SetSiblingIndex(i);
+            entityDisplays[i].UpdateText();
+            entityDisplays[i].gameObject.SetActive(i < entitiesToDisplay);
+        }
+
+        LeaderboardEntityDisplay myDisplay = entityDisplays.FirstOrDefault(x => x.ClientId == NetworkManager.Singleton.LocalClientId);
+
+        if (myDisplay != null)
+        {
+            if (myDisplay.transform.GetSiblingIndex() >= entitiesToDisplay)
+            {
+                leaderboardEntityHolder.GetChild(entitiesToDisplay - 1).gameObject.SetActive(false);
+                myDisplay.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -134,7 +155,7 @@ public class Leaderboard : NetworkBehaviour
 
     void HandleCoinsChanged(ulong clientId, int newCoins)
     {
-        for (int i = 0; i<leaderboardEntities.Count; i++)
+        for (int i = 0; i < leaderboardEntities.Count; i++)
         {
             if (leaderboardEntities[i].ClientId != clientId) continue;
 

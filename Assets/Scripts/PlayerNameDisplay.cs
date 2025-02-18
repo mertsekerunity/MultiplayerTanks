@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,18 +7,18 @@ using UnityEngine;
 
 public class PlayerNameDisplay : MonoBehaviour
 {
-    [SerializeField] Player player;
-    [SerializeField] TMP_Text playerNameText;
+    [SerializeField] private Player player;
+    [SerializeField] private TMP_Text playerNameText;
 
-    // Start is called before the first frame update
-    void Start()
+    // Method called at the start of the game
+    private void Start()
     {
         HandlePlayerNameChanged(string.Empty, player.PlayerName.Value);
 
         player.PlayerName.OnValueChanged += HandlePlayerNameChanged;
     }
 
-    void HandlePlayerNameChanged(FixedString32Bytes oldName, FixedString32Bytes newName)
+    private void HandlePlayerNameChanged(FixedString32Bytes oldName, FixedString32Bytes newName)
     {
         playerNameText.text = newName.ToString();
     }

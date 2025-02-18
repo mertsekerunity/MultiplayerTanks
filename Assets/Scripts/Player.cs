@@ -14,6 +14,7 @@ public class Player : NetworkBehaviour
     [SerializeField] int ownerPriority = 15;
 
     [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public CoinWallet CoinWallet { get; private set; }
 
     public static event Action<Player> OnPlayerSpawned;
     public static event Action<Player> OnPlayerDespawned;

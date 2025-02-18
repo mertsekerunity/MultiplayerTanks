@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 2811247528914158197}
   - component: {fileID: 550439247101775834}
   - component: {fileID: 3158163531618720366}
-  - component: {fileID: 816365074575160934}
+  - component: {fileID: 1571804717881083944}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 8916238522741177181}
   healthbarImage: {fileID: 5488112121606285599}
---- !u!114 &816365074575160934
+--- !u!114 &1571804717881083944
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1182314349804526081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8982d91f732b08f4396991b329399b0b, type: 3}
+  m_Script: {fileID: 11500000, guid: bc833f9773a72cc41a9e8afa0597d003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8110152873518900450}
@@ -597,6 +597,7 @@ MonoBehaviour:
   virtualCamera: {fileID: 3821376543069726272}
   ownerPriority: 15
   <Health>k__BackingField: {fileID: 8916238522741177181}
+  <CoinWallet>k__BackingField: {fileID: 8938790331884424521}
 --- !u!1 &6254127103013261505
 GameObject:
   m_ObjectHideFlags: 0

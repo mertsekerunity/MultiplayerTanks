@@ -13,6 +13,9 @@ public class Player : NetworkBehaviour
     [SerializeField] CinemachineVirtualCamera virtualCamera;
     [SerializeField] int ownerPriority = 15;
 
+    [SerializeField] SpriteRenderer minimapIconRenderer;
+    [SerializeField] Color ownerColor;
+ 
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public CoinWallet CoinWallet { get; private set; }
 
@@ -33,6 +36,8 @@ public class Player : NetworkBehaviour
         if (IsOwner)
         {
             virtualCamera.Priority = ownerPriority;
+
+            minimapIconRenderer.color = ownerColor;
         }
     }
 

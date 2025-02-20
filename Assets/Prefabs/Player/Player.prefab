@@ -605,6 +605,7 @@ MonoBehaviour:
         byte0028: 0
         byte0029: 0
   virtualCamera: {fileID: 3821376543069726272}
+  crosshair: {fileID: 2800000, guid: 33aa7500eeb09f349ba15d3a8cd66b17, type: 3}
   ownerPriority: 15
   minimapIconRenderer: {fileID: 8339037873260022131}
   ownerColor: {r: 0, g: 0.24388348, b: 0.9622642, a: 1}

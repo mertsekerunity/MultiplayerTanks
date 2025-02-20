@@ -11,6 +11,8 @@ public class Player : NetworkBehaviour
     public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
 
     [SerializeField] CinemachineVirtualCamera virtualCamera;
+    [SerializeField] Texture2D crosshair;
+
     [SerializeField] int ownerPriority = 15;
 
     [SerializeField] SpriteRenderer minimapIconRenderer;
@@ -38,6 +40,8 @@ public class Player : NetworkBehaviour
             virtualCamera.Priority = ownerPriority;
 
             minimapIconRenderer.color = ownerColor;
+
+            Cursor.SetCursor(crosshair, new Vector2(crosshair.width/2, crosshair.height/2), CursorMode.Auto);
         }
     }
 

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class ApplicationController : MonoBehaviour
 {
     [SerializeField] ClientSingleton clientPrefab;
     [SerializeField] HostSingleton hostPrefab;
+    [SerializeField] ServerSingleton serverPrefab;
 
     // Start is called before the first frame update
     async void Start()
@@ -20,7 +22,12 @@ public class ApplicationController : MonoBehaviour
     {
         if (isDedicatedServer)
         {
-            //specific logic for dedicated server
+            ServerSingleton serverSingleton = Instantiate(serverPrefab);
+
+            await serverSingleton.CreateServer();
+
+            await serverSingleton.GameManager.StartGameServerAsync();
+
         }
         else
         {

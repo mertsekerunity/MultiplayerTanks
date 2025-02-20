@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 
 public class NetworkServer : IDisposable
@@ -10,6 +11,8 @@ public class NetworkServer : IDisposable
 
     Dictionary<ulong, string> clientIdToAuth = new Dictionary<ulong, string>();
     Dictionary<string, UserData> authIdToUserData = new Dictionary<string, UserData>();
+
+    public Action<string> OnClientLeft;
 
     public NetworkServer(NetworkManager networkManager)
     {
@@ -53,6 +56,8 @@ public class NetworkServer : IDisposable
             clientIdToAuth.Remove(clientId);
 
             authIdToUserData.Remove(authId);
+
+            OnClientLeft?.Invoke(authId);
         }
     }
 
@@ -67,6 +72,15 @@ public class NetworkServer : IDisposable
             return null;
         }
         return null;
+    }
+
+    public bool OpenConnection(string ip, int port)
+    {
+        UnityTransport transport = networkManager.gameObject.GetComponent<UnityTransport>();
+
+        transport.SetConnectionData(ip, (ushort)port);
+
+        return networkManager.StartServer();
     }
 
     public void Dispose()

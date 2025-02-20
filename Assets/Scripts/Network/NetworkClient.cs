@@ -33,6 +33,19 @@ public class NetworkClient : IDisposable
         }
     }
 
+    public void Disconnect()
+    {
+        if(SceneManager.GetActiveScene().name != MenuSceneName)
+        {
+            SceneManager.LoadScene(MenuSceneName);
+        }
+
+        if (networkManager.IsConnectedClient)
+        {
+            networkManager.Shutdown();
+        }
+    }
+
     public void Dispose()
     {
         if (networkManager != null)

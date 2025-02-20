@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc833f9773a72cc41a9e8afa0597d003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8110152873518900450}
+  player: {fileID: 7369773291813001149}
   playerNameText: {fileID: 4027173419851497377}
 --- !u!1 &3217158293773977976
 GameObject:
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 781653759880394623}
   - component: {fileID: 8916238522741177181}
   - component: {fileID: 8938790331884424521}
-  - component: {fileID: 8110152873518900450}
+  - component: {fileID: 7369773291813001149}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -557,7 +557,7 @@ MonoBehaviour:
     m_Bits: 1
   TotalCoins:
     m_InternalValue: 0
---- !u!114 &8110152873518900450
+--- !u!114 &7369773291813001149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -566,7 +566,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5519548175331555750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96427cc77ea163646824726dbb38e3d5, type: 3}
+  m_Script: {fileID: 11500000, guid: ef25acea340cc94499bffb0d62595107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName:
@@ -607,7 +607,7 @@ MonoBehaviour:
   virtualCamera: {fileID: 3821376543069726272}
   ownerPriority: 15
   minimapIconRenderer: {fileID: 8339037873260022131}
-  ownerColor: {r: 0, g: 0.12460327, b: 1, a: 1}
+  ownerColor: {r: 0, g: 0, b: 0, a: 0}
   <Health>k__BackingField: {fileID: 8916238522741177181}
   <CoinWallet>k__BackingField: {fileID: 8938790331884424521}
 --- !u!1 &6254127103013261505

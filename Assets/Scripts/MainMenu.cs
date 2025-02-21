@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,9 @@ public class MainMenu : MonoBehaviour
 
     bool isMatchMaking;
     bool isCancelling;
+    bool isBusy;
+
+    float timeInQueue;
 
     private void Start()
     {
@@ -21,6 +25,16 @@ public class MainMenu : MonoBehaviour
 
         queueStatusText.text = string.Empty;
         queueTimer.text = string.Empty;
+    }
+
+    private void Update()
+    {
+        if(isMatchMaking)
+        {
+            timeInQueue += Time.deltaTime;
+            TimeSpan ts = TimeSpan.FromSeconds(timeInQueue);
+            queueTimer.text = string.Format("{0:00} : {1:00}", ts.Minutes, ts.Seconds);
+        }
     }
 
     public async void StartHost()
@@ -43,8 +57,10 @@ public class MainMenu : MonoBehaviour
             isCancelling = true;
             await ClientSingleton.Instance.GameManager.CancelMatchmaking();
             isCancelling = false;
+            isBusy = false;
             findMatchButtonText.text = "Find Match";
             queueStatusText.text = string.Empty;
+            queueTimer.text = string.Empty;
             return;
 
         }

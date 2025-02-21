@@ -3563,9 +3563,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2127122436325368243, guid: c6bf911c9a2c0e548aea8b8f6fdc7098, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3352525856657642603, guid: c6bf911c9a2c0e548aea8b8f6fdc7098, type: 3}
       propertyPath: m_Name
       value: HealingZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 3352525856657642603, guid: c6bf911c9a2c0e548aea8b8f6fdc7098, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480063376645665763, guid: c6bf911c9a2c0e548aea8b8f6fdc7098, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7131887432884713616, guid: c6bf911c9a2c0e548aea8b8f6fdc7098, type: 3}
       propertyPath: m_LocalPosition.x

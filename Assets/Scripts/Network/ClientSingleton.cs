@@ -66,7 +66,7 @@ public class ClientSingleton : MonoBehaviour
         return initResult;
     }
 
-    public void Dispose()
+    public void OnDestroy()
     {
         GameManager?.Dispose();
     }

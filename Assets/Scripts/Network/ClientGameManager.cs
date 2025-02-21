@@ -79,11 +79,11 @@ public class ClientGameManager : IDisposable
         RelayServerData relayServerData = new RelayServerData(allocation, "dtls");
         transport.SetRelayServerData(relayServerData);
 
-        UserData userData = new UserData
-        {
-            userName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Missing name"),
-            userAuthId = AuthenticationService.Instance.PlayerId
-        };
+        //UserData userData = new UserData
+        //{
+        //    userName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Missing name"),
+        //    userAuthId = AuthenticationService.Instance.PlayerId
+        //};
 
         ConnectClient();
     }
@@ -113,7 +113,7 @@ public class ClientGameManager : IDisposable
 
         if (matchmakingResult.result == MatchmakerPollingResult.Success)
         {
-            // connect to server
+            StartClient(matchmakingResult.ip, matchmakingResult.port);
         }
 
         return matchmakingResult.result;

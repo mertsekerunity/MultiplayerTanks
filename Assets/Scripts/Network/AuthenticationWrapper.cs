@@ -62,6 +62,7 @@ public static class AuthenticationWrapper
 
             tries++;
             Debug.LogWarning("Authentication failed. Trying again!");
+            await Task.Delay(2000);
         }
 
         if(CurrentAuthState != AuthState.Authenticated)

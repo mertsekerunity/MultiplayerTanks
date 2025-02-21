@@ -10,6 +10,8 @@ public class ApplicationController : MonoBehaviour
     [SerializeField] HostSingleton hostPrefab;
     [SerializeField] ServerSingleton serverPrefab;
 
+    ApplicationData appData;
+
     // Start is called before the first frame update
     async void Start()
     {
@@ -22,6 +24,8 @@ public class ApplicationController : MonoBehaviour
     {
         if (isDedicatedServer)
         {
+            appData = new ApplicationData();
+
             ServerSingleton serverSingleton = Instantiate(serverPrefab);
 
             await serverSingleton.CreateServer();

@@ -15,9 +15,9 @@ public class ServerGameManager : IDisposable
 
     MatchplayBackfiller backfiller;
 
-    NetworkServer networkServer;
-
     MultiplayAllocationService multiplayAllocationService;
+
+    public NetworkServer NetworkServer { get; private set; }
 
     const string GameSceneName = "Game";
 
@@ -27,7 +27,7 @@ public class ServerGameManager : IDisposable
         this.serverPort = serverPort;
         this.queryPort = queryPort;
 
-        networkServer = new NetworkServer(networkManager);
+        NetworkServer = new NetworkServer(networkManager);
 
         multiplayAllocationService = new MultiplayAllocationService();
     }
@@ -44,8 +44,8 @@ public class ServerGameManager : IDisposable
             {
                 await StartBackfill(matchmakerPayload);
 
-                networkServer.OnUserJoined += UserJoined;
-                networkServer.OnUserLeft += UserLeft;
+                NetworkServer.OnUserJoined += UserJoined;
+                NetworkServer.OnUserLeft += UserLeft;
             }
             else
             {
@@ -57,7 +57,7 @@ public class ServerGameManager : IDisposable
             Debug.LogWarning($"Error connecting to the server: {ex}");
         }
 
-        if (!networkServer.OpenConnection(serverIP, serverPort))
+        if (!NetworkServer.OpenConnection(serverIP, serverPort))
         {
             Debug.LogError("Server was not able to start successfully");
             return;
@@ -87,7 +87,7 @@ public class ServerGameManager : IDisposable
 
         if (backfiller.NeedsPlayers())
         {
-            await backfiller.StartBackfilling();
+            await backfiller.BeginBackfilling();
         }
     }
 
@@ -114,6 +114,11 @@ public class ServerGameManager : IDisposable
             CloseServer();
             return;
         }
+
+        if(backfiller.NeedsPlayers() && !backfiller.IsBackfilling)
+        {
+            _ = backfiller.BeginBackfilling();
+        }
     }
 
     async void CloseServer()
@@ -127,12 +132,12 @@ public class ServerGameManager : IDisposable
 
     public void Dispose()
     {
-        networkServer.OnUserJoined -= UserJoined;
-        networkServer.OnUserLeft -= UserLeft;
+        NetworkServer.OnUserJoined -= UserJoined;
+        NetworkServer.OnUserLeft -= UserLeft;
 
         backfiller?.Dispose();
 
-        networkServer?.Dispose();
+        NetworkServer?.Dispose();
         multiplayAllocationService?.Dispose();
     }
 }

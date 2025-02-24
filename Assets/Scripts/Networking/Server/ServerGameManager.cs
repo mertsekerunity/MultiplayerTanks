@@ -21,13 +21,13 @@ public class ServerGameManager : IDisposable
 
     const string GameSceneName = "Game";
 
-    public ServerGameManager(string serverIP, int serverPort, int queryPort, NetworkManager networkManager)
+    public ServerGameManager(string serverIP, int serverPort, int queryPort, NetworkManager networkManager, NetworkObject playerPrefab)
     {
         this.serverIP = serverIP;
         this.serverPort = serverPort;
         this.queryPort = queryPort;
 
-        NetworkServer = new NetworkServer(networkManager);
+        NetworkServer = new NetworkServer(networkManager, playerPrefab);
 
         multiplayAllocationService = new MultiplayAllocationService();
     }

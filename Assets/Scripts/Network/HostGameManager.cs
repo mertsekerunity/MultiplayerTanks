@@ -21,10 +21,17 @@ public class HostGameManager: IDisposable
     string joinCode;
     string lobbyId;
 
+    NetworkObject playerPrefab;
+
     public NetworkServer NetworkServer { get; private set; }
 
     const int MaxConnections = 20;
     const string GameSceneName = "Game";
+
+    public HostGameManager(NetworkObject playerPrefab)
+    {
+        this.playerPrefab = playerPrefab;
+    }
 
     public async Task StartHostAsync()
     {
@@ -82,7 +89,7 @@ public class HostGameManager: IDisposable
             return;
         }
 
-        NetworkServer = new NetworkServer(NetworkManager.Singleton);
+        NetworkServer = new NetworkServer(NetworkManager.Singleton, playerPrefab);
 
         UserData userData = new UserData { userName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Missing name"),
                                            userAuthId = AuthenticationService.Instance.PlayerId };

@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Services.Lobbies.Models;
+using Unity.Services.Lobbies;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
@@ -88,5 +90,26 @@ public class MainMenu : MonoBehaviour
                 queueStatusText.text = "Match Assignment Error!";
                 break;
         }
+    }
+
+    public async void JoinAsync(Lobby lobby)
+    {
+        if (isBusy) return;
+
+        isBusy = true;
+
+        try
+        {
+            Lobby joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id);
+            string joinCode = joiningLobby.Data["JoinCode"].Value;
+
+            await ClientSingleton.Instance.GameManager.StartClientAsync(joinCode);
+        }
+        catch (LobbyServiceException ex)
+        {
+            Debug.Log(ex);
+        }
+
+        isBusy = false;
     }
 }
